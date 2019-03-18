@@ -1,0 +1,21 @@
+#include "mbed.h"
+
+AnalogIn tensao_bat(A0);
+AnalogIn corrente_bat(A1);
+
+int main() {
+    float tensao;
+    float corrente;
+    float rshunt;
+    rshunt = 0.0865;
+    
+    while(1){
+        tensao = tensao_bat.read();
+        tensao = tensao*4*3.3;
+        corrente = corrente_bat.read();
+        corrente = 3.3*corrente/(20*rshunt);
+        printf("\n\r%.3f",tensao);
+        printf("%3f",corrente);
+        wait(1);
+        }
+    }
